@@ -9,15 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.experimental.Accessors;
 
 @Entity
-@Table(name = "REGISTRO", schema = "AGENDA")
-@Getter @Setter @NoArgsConstructor
 @Accessors(chain=true)
+@Table(name = "REGISTRO", schema = "AGENDA")
 public class Registro {
 
 	@Id
