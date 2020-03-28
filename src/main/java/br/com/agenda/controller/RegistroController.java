@@ -35,7 +35,8 @@ public class RegistroController {
 	@GetMapping(value = "{id}")
 	@ResponseStatus(value = HttpStatus.OK)
 	public ResponseEntity<Registro> findById(@PathVariable("id") Long id){
-		return ResponseEntity.ok(this.business.findById(id));
+		Registro registro = this.business.findById(id);
+		return registro != null ? ResponseEntity.ok(registro) : ResponseEntity.notFound().build();			
 	}
 	
 	@PostMapping

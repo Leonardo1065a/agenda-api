@@ -13,7 +13,7 @@ import lombok.experimental.Accessors;
 
 @Entity
 @Accessors(chain=true)
-@Table(name = "REGISTRO", schema = "AGENDA")
+@Table(name = "REGISTRO")
 public class Registro {
 
 	@Id

@@ -1,6 +1,7 @@
 package br.com.agenda.business;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +16,17 @@ public class RegistroBusiness {
 	private @Autowired RegistroRepository repository;
 	
 	public List<Registro> lista(){
-		return this.repository.findAllRegistros();
+		return this.repository.findAll();
 	}
 	
 	public Registro findById(Long id) {
-		return this.repository.findRegistroById(id);
+		Optional<Registro> registro = this.repository.findById(id);
+		if(registro != null) {
+			Registro reg = registro.get();
+			return reg;
+		}else {
+			return new Registro();
+		}
 	}
 	
 	public Registro save(Registro registro) throws Exception {
@@ -29,10 +36,11 @@ public class RegistroBusiness {
 			throw new Exception("Erro ao salvar");
 		}
 	}
+
 	
 	public Registro update(Registro registro) throws Exception{
 		try {
-			Registro registroSalvo = this.repository.findRegistroById(registro.getId());
+			Registro registroSalvo = this.findById(registro.getId());
 			if(!(registroSalvo != null)) {
 				throw new Exception("Registro não encontrado para atualizar");
 			}
